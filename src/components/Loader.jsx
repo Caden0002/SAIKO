@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import loadingwheel from '/loadingwheel.gif'; // Adjust the path as per your project structure
+import loadingwheel from '/loadingwheel.gif'; 
+import loadingsteps from '/loadingsteps.gif'; 
+
+
+const text = 'Loading...'; // Text to display below the GIF
 
 function Loader(props) {
     const controls = useAnimation();
@@ -15,7 +19,7 @@ function Loader(props) {
             document.body.classList.remove('no-scroll');
             setScrollEnabled(true);
             moveUp();
-        }, 2500);
+        }, 2700);
 
         return () => {
             // Enable scrolling on unmount and clear timeout
@@ -33,15 +37,23 @@ function Loader(props) {
 
     return (
         <motion.div
-            className="fixed h-screen bg-[#ef9235] top-0 left-0 w-full h-full flex justify-center items-center z-50"
+            className="fixed h-screen bg-[#ef9235] top-0 left-0 w-full h-full flex flex-col justify-center items-center z-50"
             animate={controls}
         >
             <img
                 src={loadingwheel}
                 alt="Loading"
-                style={{ width: '533px', height: '400px' }}
+                style={{ width: '333px', height: '250px' }}
+            />
+            <p className="font-AR text-white text-3xl tracking-widest mt-4 mb-8">{text}</p>
+
+            <img
+                src={loadingsteps}
+                alt="Loading"
+    style={{ width: '133px', height: '100px', filter: 'invert(100%)' }}
             />
         </motion.div>
+        
     );
 }
 

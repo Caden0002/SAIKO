@@ -16,6 +16,8 @@ module.exports = {
 
       fontFamily: {
         OldSTT: ['Old Standard TT', 'serif'],
+        AR: ["Attractype Reborn", "sans-serif"],
+
       },
 
       colors: {
