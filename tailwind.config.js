@@ -6,20 +6,17 @@ module.exports = {
 
   theme: {
     extend: {
-
       screens: {
         'sm': '576px',
         'md': '1280px',
         'lg': '1440px',
         'xl': '1900px',
       },
-
       fontFamily: {
         OldSTT: ['Old Standard TT', 'serif'],
         AR: ["Attractype Reborn", "sans-serif"],
 
       },
-
       colors: {
         // Define your color variables here
         // textColorPrimary: '#351410',

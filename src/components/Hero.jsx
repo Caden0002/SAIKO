@@ -244,7 +244,7 @@ function Hero() {
             )}
 
             {/* Audio Player */}
-            <div className="fixed bottom-4 left-4">
+            <div className={`fixed left-4 ${isMobile ? 'top-4' : 'bottom-4'}`}>
                 <div className="w-64 h-20 bg-[#000]/[.3] rounded relative flex items-center p-4" style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
                     <img
                         src='/saikoweblogo.png'
