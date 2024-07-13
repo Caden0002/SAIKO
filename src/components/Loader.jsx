@@ -1,46 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import { hourglass } from 'ldrs'
-
-hourglass.register()
+import loadingwheel from '/loadingwheel.gif'; // Adjust the path as per your project structure
 
 function Loader(props) {
-    const [loading, setLoading] = useState(true);
-    const controls = useAnimation(); // Animation controls
+    const controls = useAnimation();
+    const [scrollEnabled, setScrollEnabled] = useState(false);
 
     useEffect(() => {
-        if (!loading) {
-            // After 4 seconds (when loading becomes false), start fading out the loader
-            controls.start({
-                opacity: 0,
-                transition: { duration: 2 }
-            });
-        }
-    }, [loading, controls]);
+        // Disable scrolling on mount
+        document.body.classList.add('no-scroll');
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoading(false);
-        }, 4000);
+        const timeout = setTimeout(() => {
+            // Enable scrolling after 5 seconds
+            document.body.classList.remove('no-scroll');
+            setScrollEnabled(true);
+            moveUp();
+        }, 2500);
 
-        // Clear the timeout when the component unmounts
-        return () => clearTimeout(timer);
+        return () => {
+            // Enable scrolling on unmount and clear timeout
+            document.body.classList.remove('no-scroll');
+            clearTimeout(timeout);
+        };
     }, []);
 
-    const loadingText = "Welcome to Saiko Corporation. Please wait while we load your page...";
+    const moveUp = async () => {
+        await controls.start({
+            y: "-100%", // Move up 100%
+            transition: { duration: 0.5 }
+        });
+    };
 
     return (
         <motion.div
-            className={`fixed bg-black h-screen top-0 left-0 w-full h-full flex flex-col justify-center items-center z-10 ${loading ? '' : 'pointer-events-none'}`}
+            className="fixed h-screen bg-[#ef9235] top-0 left-0 w-full h-full flex justify-center items-center z-50"
             animate={controls}
         >
-            {loading ? (
-                <>
-
-                    <l-hourglass size="50" speed="1.2" color="#F7F1A4"></l-hourglass>
-                    <div className="text-amber-200 mt-12 mx-24 text-xs text-center leading-5 ">{loadingText}</div>
-                </>
-            ) : null}
+            <img
+                src={loadingwheel}
+                alt="Loading"
+                style={{ width: '533px', height: '400px' }}
+            />
         </motion.div>
     );
 }

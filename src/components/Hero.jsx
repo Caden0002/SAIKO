@@ -15,7 +15,7 @@ function Hero(props) {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 750);
+            setIsMobile(window.innerWidth < 850);
         };
 
         // Initial check
