@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Lottie from 'react-lottie';
 import HeroBackground from '/herobackgroundcleardarken.png';
-import SaikoLogo from '/SaikoLogo.png'; // Assuming the path is relative to the current file
-import SaikoFood from '/Food.png'; // Assuming the path is relative to the current file
-import SaikoBooks from '/Books.png'; // Assuming the path is relative to the current file
-import SaikoToys from '/Toys.png'; // Assuming the path is relative to the current file
-import SaikoMusic from '/Music.png'; // Assuming the path is relative to the current file
-import SaikoMovies from '/Movies.png'; // Assuming the path is relative to the current file
-import SaikoGames from '/Games.png'; // Assuming the path is relative to the current file
-import animationData from '../../lottie/heromobilearrow.json'; // Replace with your Lottie animation file
+import SaikoLogo from '/SaikoLogo.png'; 
+import SaikoFood from '/Food.png'; 
+import SaikoBooks from '/Books.png';  
+import SaikoToys from '/Toys.png'; 
+import SaikoMusic from '/Music.png'; 
+import SaikoMovies from '/Movies.png'; 
+import SaikoGames from '/Games.png'; 
+import animationData from '../../lottie/heromobilearrow.json'; 
 
 function Hero(props) {
     const [isMobile, setIsMobile] = useState(false);
