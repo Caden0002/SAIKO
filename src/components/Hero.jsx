@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Lottie from 'react-lottie';
+import animationData from '../../lottie/heromobilearrow.json';
+import SaikoBooks from '/Books.png';
+import SaikoFood from '/Food.png';
+import SaikoGames from '/Games.png';
+import SaikoMovies from '/Movies.png';
+import SaikoMusic from '/Music.png';
+import SaikoLogo from '/SaikoLogo.png';
+import SaikoToys from '/Toys.png';
 import HeroBackground from '/herobackgroundcleardarken.png';
-import SaikoLogo from '/SaikoLogo.png'; 
-import SaikoFood from '/Food.png'; 
-import SaikoBooks from '/Books.png';  
-import SaikoToys from '/Toys.png'; 
-import SaikoMusic from '/Music.png'; 
-import SaikoMovies from '/Movies.png'; 
-import SaikoGames from '/Games.png'; 
-import animationData from '../../lottie/heromobilearrow.json'; 
+import SaikoBGM from '/saikobgm.mp3';
 
-function Hero(props) {
+function Hero() {
     const [isMobile, setIsMobile] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const audioRef = useRef(new Audio(SaikoBGM));
 
     useEffect(() => {
         const handleResize = () => {
@@ -30,6 +35,44 @@ function Hero(props) {
         };
     }, []);
 
+    useEffect(() => {
+        const audio = audioRef.current;
+
+        const updateCurrentTime = () => {
+            setCurrentTime(audio.currentTime);
+        };
+
+        const setAudioData = () => {
+            setDuration(audio.duration);
+            setCurrentTime(audio.currentTime);
+        };
+
+        audio.addEventListener('timeupdate', updateCurrentTime);
+        audio.addEventListener('loadedmetadata', setAudioData);
+
+        if (isPlaying) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+
+        return () => {
+            audio.removeEventListener('timeupdate', updateCurrentTime);
+            audio.removeEventListener('loadedmetadata', setAudioData);
+        };
+    }, [isPlaying]);
+
+    const togglePlayPause = () => {
+        setIsPlaying(!isPlaying);
+    };
+
+    const handleProgressChange = (event) => {
+        const audio = audioRef.current;
+        const newTime = (event.target.value / 100) * duration;
+        audio.currentTime = newTime;
+        setCurrentTime(newTime);
+    };
+
     const darkenState = {
         filter: 'brightness(70%)', // Initial filter for darkening
         transition: 'filter 0.3s ease', // Smooth transition effect
@@ -40,157 +83,206 @@ function Hero(props) {
         transition: 'filter 0.3s ease, transform 0.3s ease',
     };
 
-    if (isMobile) {
-        return (
-            <div className="flex flex-col items-center" style={{ backgroundImage: `url(${HeroBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    const PlayIcon = (
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 fill-current text-white" viewBox="0 0 24 24">
+            <path d="M3 22v-20l18 10-18 10z"></path>
+        </svg>
+    );
 
-                {/* SaikoLogo */}
-                <div className="w-4/4 h-screen flex flex-col justify-center items-center">
-                    <img src={SaikoLogo} alt="Saiko Logo" className="w-full cursor-pointer" />
-                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 mb-4 pointer-events-none">
-                    <Lottie
-                        options={{
-                            loop: true,
-                            autoplay: true,
-                            animationData: animationData,
-                            rendererSettings: {
-                                preserveAspectRatio: 'xMidYMid slice'
-                            }
-                        }}
-                        height={50}
-                        width={50}
-                    />
-                </div>
-                </div>
+    const PauseIcon = (
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 fill-current text-white" viewBox="0 0 24 24">
+            <path d="M6 22h4v-20h-4v20zm8-20v20h4v-20h-4z"></path>
+        </svg>
+    );
 
-                {/* Lottie animation */}
-
-
-                {/* SaikoFood image */}
-                <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mt-24 mb-24">
-                    <img src={SaikoFood} alt="Saiko Food" className="w-full cursor-pointer" />
-                </div>
-
-                {/* SaikoBooks image */}
-                <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
-                    <img src={SaikoBooks} alt="Saiko Books" className="w-full cursor-pointer" />
-                </div>
-
-                {/* SaikoToys image */}
-                <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
-                    <img src={SaikoToys} alt="Saiko Toys" className="w-full cursor-pointer" />
-                </div>
-
-                {/* SaikoMusic image */}
-                <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
-                    <img src={SaikoMusic} alt="Saiko Music" className="w-full cursor-pointer" />
-                </div>
-
-                {/* SaikoMovies image */}
-                <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
-                    <img src={SaikoMovies} alt="Saiko Movies" className="w-full cursor-pointer" />
-                </div>
-
-                {/* SaikoGames image */}
-                <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
-                    <img src={SaikoGames} alt="Saiko Games" className="w-full cursor-pointer" />
-                </div>
-            </div>
-        );
-    }
-
-    // Desktop view (non-mobile)
     return (
-        <div className="grid grid-cols-10 grid-rows-10 min-h-screen" style={{ backgroundImage: `url(${HeroBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            {/* SaikoFood image */}
-            <div className="col-start-2 row-start-1 col-span-2 row-span-4 flex justify-center items-end">
-                <img src={SaikoFood} alt="Saiko Food" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle} 
-                    onMouseEnter={(e) => {
-                        e.target.style.filter = 'brightness(100%)';
-                        e.target.style.transform = 'scale(1.1)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.target.style.filter = 'brightness(70%)';
-                        e.target.style.transform = 'scale(1)';
-                    }}
-                />
-            </div>
+        <div>
+            {isMobile ? (
+                <div className="flex flex-col items-center" style={{ backgroundImage: `url(${HeroBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                    {/* SaikoLogo */}
+                    <div className="w-4/4 h-screen flex flex-col justify-center items-center">
+                        <img src={SaikoLogo} alt="Saiko Logo" className="w-full cursor-pointer" />
+                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 mb-4 pointer-events-none">
+                            <Lottie
+                                options={{
+                                    loop: true,
+                                    autoplay: true,
+                                    animationData: animationData,
+                                    rendererSettings: {
+                                        preserveAspectRatio: 'xMidYMid slice'
+                                    }
+                                }}
+                                height={50}
+                                width={50}
+                            />
+                        </div>
+                    </div>
 
-            {/* SaikoBooks image */}
-            <div className="col-start-5 row-start-1 col-span-2 row-span-4 flex justify-center items-center">
-                <img src={SaikoBooks} alt="Saiko Books" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle} 
-                    onMouseEnter={(e) => {
-                        e.target.style.filter = 'brightness(100%)';
-                        e.target.style.transform = 'scale(1.1)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.target.style.filter = 'brightness(70%)';
-                        e.target.style.transform = 'scale(1)';
-                    }}
-                />
-            </div>
+                    {/* Lottie animation */}
 
-            {/* SaikoToys image */}
-            <div className="col-start-8 row-start-1 col-span-2 row-span-4 flex justify-center items-end">
-                <img src={SaikoToys} alt="Saiko Toys" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle} 
-                    onMouseEnter={(e) => {
-                        e.target.style.filter = 'brightness(100%)';
-                        e.target.style.transform = 'scale(1.1)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.target.style.filter = 'brightness(70%)';
-                        e.target.style.transform = 'scale(1)';
-                    }}
-                />
-            </div>
+                    {/* SaikoFood image */}
+                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mt-24 mb-24">
+                        <img src={SaikoFood} alt="Saiko Food" className="w-full cursor-pointer" />
+                    </div>
 
-            {/* SaikoMusic image */}
-            <div className="col-start-2 row-start-7 col-span-2 row-span-4 flex justify-center">
-                <img src={SaikoMusic} alt="Saiko Music" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle} 
-                    onMouseEnter={(e) => {
-                        e.target.style.filter = 'brightness(100%)';
-                        e.target.style.transform = 'scale(1.1)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.target.style.filter = 'brightness(70%)';
-                        e.target.style.transform = 'scale(1)';
-                    }}
-                />
-            </div>
+                    {/* SaikoBooks image */}
+                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                        <img src={SaikoBooks} alt="Saiko Books" className="w-full cursor-pointer" />
+                    </div>
 
-            {/* SaikoMovies image */}
-            <div className="col-start-5 row-start-7 col-span-2 row-span-4 flex justify-center items-center">
-                <img src={SaikoMovies} alt="Saiko Movies" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle} 
-                    onMouseEnter={(e) => {
-                        e.target.style.filter = 'brightness(100%)';
-                        e.target.style.transform = 'scale(1.1)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.target.style.filter = 'brightness(70%)';
-                        e.target.style.transform = 'scale(1)';
-                    }}
-                />
-            </div>
+                    {/* SaikoToys image */}
+                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                        <img src={SaikoToys} alt="Saiko Toys" className="w-full cursor-pointer" />
+                    </div>
 
-            {/* SaikoGames image */}
-            <div className="col-start-8 row-start-7 col-span-2 row-span-4 flex justify-center">
-                <img src={SaikoGames} alt="Saiko Games" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle} 
-                    onMouseEnter={(e) => {
-                        e.target.style.filter = 'brightness(100%)';
-                        e.target.style.transform = 'scale(1.1)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.target.style.filter = 'brightness(70%)';
-                        e.target.style.transform = 'scale(1)';
-                    }}
-                />
-            </div>
+                    {/* SaikoMusic image */}
+                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                        <img src={SaikoMusic} alt="Saiko Music" className="w-full cursor-pointer" />
+                    </div>
 
-            {/* SaikoLogo */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <img src={SaikoLogo} alt="Saiko Logo" className="max-w-full max-h-full" />
+                    {/* SaikoMovies image */}
+                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                        <img src={SaikoMovies} alt="Saiko Movies" className="w-full cursor-pointer" />
+                    </div>
+
+                    {/* SaikoGames image */}
+                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                        <img src={SaikoGames} alt="Saiko Games" className="w-full cursor-pointer" />
+                    </div>
+                </div>
+            ) : (
+                <div className="grid grid-cols-10 grid-rows-10 min-h-screen" style={{ backgroundImage: `url(${HeroBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                    {/* SaikoFood image */}
+                    <div className="col-start-2 row-start-1 col-span-2 row-span-4 flex justify-center items-end">
+                        <img src={SaikoFood} alt="Saiko Food" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle}
+                            onMouseEnter={(e) => {
+                                e.target.style.filter = 'brightness(100%)';
+                                e.target.style.transform = 'scale(1.1)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.filter = 'brightness(70%)';
+                                e.target.style.transform = 'scale(1)';
+                            }}
+                        />
+                    </div>
+
+                    {/* SaikoBooks image */}
+                    <div className="col-start-5 row-start-1 col-span-2 row-span-4 flex justify-center items-center">
+                        <img src={SaikoBooks} alt="Saiko Books" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle}
+                            onMouseEnter={(e) => {
+                                e.target.style.filter = 'brightness(100%)';
+                                e.target.style.transform = 'scale(1.1)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.filter = 'brightness(70%)';
+                                e.target.style.transform = 'scale(1)';
+                            }}
+                        />
+                    </div>
+
+                    {/* SaikoToys image */}
+                    <div className="col-start-8 row-start-1 col-span-2 row-span-4 flex justify-center items-end">
+                        <img src={SaikoToys} alt="Saiko Toys" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle}
+                            onMouseEnter={(e) => {
+                                e.target.style.filter = 'brightness(100%)';
+                                e.target.style.transform = 'scale(1.1)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.filter = 'brightness(70%)';
+                                e.target.style.transform = 'scale(1)';
+                            }}
+                        />
+                    </div>
+
+                    {/* SaikoMusic image */}
+                    <div className="col-start-2 row-start-7 col-span-2 row-span-4 flex justify-center">
+                        <img src={SaikoMusic} alt="Saiko Music" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle}
+                            onMouseEnter={(e) => {
+                                e.target.style.filter = 'brightness(100%)';
+                                e.target.style.transform = 'scale(1.1)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.filter = 'brightness(70%)';
+                                e.target.style.transform = 'scale(1)';
+                            }}
+                        />
+                    </div>
+
+                    {/* SaikoMovies image */}
+                    <div className="col-start-5 row-start-7 col-span-2 row-span-4 flex justify-center items-center">
+                        <img src={SaikoMovies} alt="Saiko Movies" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle}
+                            onMouseEnter={(e) => {
+                                e.target.style.filter = 'brightness(100%)';
+                                e.target.style.transform = 'scale(1.1)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.filter = 'brightness(70%)';
+                                e.target.style.transform = 'scale(1)';
+                            }}
+                        />
+                    </div>
+
+                    {/* SaikoGames image */}
+                    <div className="col-start-8 row-start-7 col-span-2 row-span-4 flex justify-center">
+                        <img src={SaikoGames} alt="Saiko Games" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle}
+                            onMouseEnter={(e) => {
+                                e.target.style.filter = 'brightness(100%)';
+                                e.target.style.transform = 'scale(1.1)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.filter = 'brightness(70%)';
+                                e.target.style.transform = 'scale(1)';
+                            }}
+                        />
+                    </div>
+
+                    {/* SaikoLogo */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <img src={SaikoLogo} alt="Saiko Logo" className="max-w-full max-h-full" />
+                    </div>
+                </div>
+            )}
+
+            {/* Audio Player */}
+            <div className="fixed bottom-4 left-4">
+                <div className="w-64 h-20 bg-[#000]/[.3] rounded relative flex items-center p-4" style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
+                    <img
+                        src='/saikoweblogo.png'
+                        className='h-16 mr-4'
+                        style={{
+                            filter: isPlaying ? 'brightness(100%)' : 'grayscale(70%)',
+                            transition: 'filter 0.3s ease, transform 0.3s ease',
+                            transform: isPlaying ? 'scale(1)' : 'scale(0.9)'
+                        }}
+                    />
+                    <div className="flex-grow">
+                        <div className="flex items-center justify-between mb-2">
+                            <div className="flex flex-col">
+                                <div className="text-white text-xs">SAIKO HAMSTER</div>
+                                <div className="text-white text-xs font-bold">ANIME THEME</div>
+                            </div>
+                            <button onClick={togglePlayPause} className="w-8 h-8 items-center justify-center flex rounded-full bg-[#ef9235]" style={{ border: '1px #ffffff solid' }}>
+                                {isPlaying ? PauseIcon : PlayIcon}
+                            </button>
+                        </div>
+                        <div className="relative w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div
+                                className="absolute top-0 left-0 h-full bg-[#ef9235]"
+                                style={{ width: `${(currentTime / duration) * 100}%` }}
+                            />
+                            <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value={(currentTime / duration) * 100}
+                                onChange={handleProgressChange}
+                                className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </div >
     );
 }
 
