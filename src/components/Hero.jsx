@@ -282,6 +282,41 @@ function Hero() {
                     </div>
                 </div>
             </div>
+
+            <div className={`fixed right-4 ${isMobile ? 'top-4' : 'bottom-4'}`}>
+                <div className="gap-x-5 bg-[#000]/[.3] rounded relative flex justify-center items-center py-3 px-4" style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
+                    <a target="blank" href="https://magiceden.io/runes/SAIKO%E2%80%A2HAMSTER">
+                        <img className="w-7" style={imageHoverStyle} src="/magiceden.svg" onMouseEnter={(e) => {
+                            e.target.style.filter = 'brightness(100%)';
+                            e.target.style.transform = 'scale(1.1)';
+                        }}
+                            onMouseLeave={(e) => {
+                                e.target.style.filter = 'brightness(70%)';
+                                e.target.style.transform = 'scale(1)';
+                            }} />
+                    </a>
+                    <a target="blank" href="https://t.me/saikoportal">
+                        <img className="w-5" style={imageHoverStyle} src="/telegram.svg" onMouseEnter={(e) => {
+                            e.target.style.filter = 'brightness(100%)';
+                            e.target.style.transform = 'scale(1.1)';
+                        }}
+                            onMouseLeave={(e) => {
+                                e.target.style.filter = 'brightness(70%)';
+                                e.target.style.transform = 'scale(1)';
+                            }} />
+                    </a>
+                    <a target="blank" href="https://x.com/SaikoHamster">
+                        <img className="w-4" style={imageHoverStyle} src="/twitter.svg" onMouseEnter={(e) => {
+                            e.target.style.filter = 'brightness(100%)';
+                            e.target.style.transform = 'scale(1.1)';
+                        }}
+                            onMouseLeave={(e) => {
+                                e.target.style.filter = 'brightness(70%)';
+                                e.target.style.transform = 'scale(1)';
+                            }} />
+                    </a>
+                </div>
+            </div>
         </div >
     );
 }
