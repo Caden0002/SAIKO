@@ -45,9 +45,9 @@ function Hero(props) {
             <div className="flex flex-col items-center" style={{ backgroundImage: `url(${HeroBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
 
                 {/* SaikoLogo */}
-                <div className="w-3/4 h-screen flex flex-col justify-center items-center">
+                <div className="w-4/4 h-screen flex flex-col justify-center items-center">
                     <img src={SaikoLogo} alt="Saiko Logo" className="w-full cursor-pointer" />
-                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 mb-4">
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 mb-4 pointer-events-none">
                     <Lottie
                         options={{
                             loop: true,
@@ -67,32 +67,32 @@ function Hero(props) {
 
 
                 {/* SaikoFood image */}
-                <div className="w-1/3 my-4 hover:scale-110 transform transition-transform duration-300 mt-24 mb-24">
+                <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mt-24 mb-24">
                     <img src={SaikoFood} alt="Saiko Food" className="w-full cursor-pointer" />
                 </div>
 
                 {/* SaikoBooks image */}
-                <div className="w-1/3 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
                     <img src={SaikoBooks} alt="Saiko Books" className="w-full cursor-pointer" />
                 </div>
 
                 {/* SaikoToys image */}
-                <div className="w-1/3 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
                     <img src={SaikoToys} alt="Saiko Toys" className="w-full cursor-pointer" />
                 </div>
 
                 {/* SaikoMusic image */}
-                <div className="w-1/3 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
                     <img src={SaikoMusic} alt="Saiko Music" className="w-full cursor-pointer" />
                 </div>
 
                 {/* SaikoMovies image */}
-                <div className="w-1/3 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
                     <img src={SaikoMovies} alt="Saiko Movies" className="w-full cursor-pointer" />
                 </div>
 
                 {/* SaikoGames image */}
-                <div className="w-1/3 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
                     <img src={SaikoGames} alt="Saiko Games" className="w-full cursor-pointer" />
                 </div>
             </div>
