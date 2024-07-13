@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Lottie from 'react-lottie';
 import HeroBackground from '/herobackgroundcleardarken.png';
 import SaikoLogo from '/SaikoLogo.png'; // Assuming the path is relative to the current file
 import SaikoFood from '/Food.png'; // Assuming the path is relative to the current file
@@ -7,8 +8,28 @@ import SaikoToys from '/Toys.png'; // Assuming the path is relative to the curre
 import SaikoMusic from '/Music.png'; // Assuming the path is relative to the current file
 import SaikoMovies from '/Movies.png'; // Assuming the path is relative to the current file
 import SaikoGames from '/Games.png'; // Assuming the path is relative to the current file
+import animationData from '../../lottie/heromobilearrow.json'; // Replace with your Lottie animation file
 
 function Hero(props) {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 750);
+        };
+
+        // Initial check
+        handleResize();
+
+        // Listen to window resize events
+        window.addEventListener('resize', handleResize);
+
+        // Clean up event listener on unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     const darkenState = {
         filter: 'brightness(70%)', // Initial filter for darkening
         transition: 'filter 0.3s ease', // Smooth transition effect
@@ -19,6 +40,66 @@ function Hero(props) {
         transition: 'filter 0.3s ease, transform 0.3s ease',
     };
 
+    if (isMobile) {
+        return (
+            <div className="flex flex-col items-center" style={{ backgroundImage: `url(${HeroBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+
+                {/* SaikoLogo */}
+                <div className="w-3/4 h-screen flex flex-col justify-center items-center">
+                    <img src={SaikoLogo} alt="Saiko Logo" className="w-full cursor-pointer" />
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 mb-4">
+                    <Lottie
+                        options={{
+                            loop: true,
+                            autoplay: true,
+                            animationData: animationData,
+                            rendererSettings: {
+                                preserveAspectRatio: 'xMidYMid slice'
+                            }
+                        }}
+                        height={50}
+                        width={50}
+                    />
+                </div>
+                </div>
+
+                {/* Lottie animation */}
+
+
+                {/* SaikoFood image */}
+                <div className="w-1/3 my-4 hover:scale-110 transform transition-transform duration-300 mt-24 mb-24">
+                    <img src={SaikoFood} alt="Saiko Food" className="w-full cursor-pointer" />
+                </div>
+
+                {/* SaikoBooks image */}
+                <div className="w-1/3 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                    <img src={SaikoBooks} alt="Saiko Books" className="w-full cursor-pointer" />
+                </div>
+
+                {/* SaikoToys image */}
+                <div className="w-1/3 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                    <img src={SaikoToys} alt="Saiko Toys" className="w-full cursor-pointer" />
+                </div>
+
+                {/* SaikoMusic image */}
+                <div className="w-1/3 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                    <img src={SaikoMusic} alt="Saiko Music" className="w-full cursor-pointer" />
+                </div>
+
+                {/* SaikoMovies image */}
+                <div className="w-1/3 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                    <img src={SaikoMovies} alt="Saiko Movies" className="w-full cursor-pointer" />
+                </div>
+
+                {/* SaikoGames image */}
+                <div className="w-1/3 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                    <img src={SaikoGames} alt="Saiko Games" className="w-full cursor-pointer" />
+                </div>
+            </div>
+        );
+    }
+
+    // Desktop view (non-mobile)
     return (
         <div className="grid grid-cols-10 grid-rows-10 min-h-screen" style={{ backgroundImage: `url(${HeroBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             {/* SaikoFood image */}
