@@ -102,6 +102,8 @@ function Hero() {
                     {/* SaikoLogo */}
                     <div className="w-4/4 h-screen flex flex-col justify-center items-center">
                         <img src={SaikoLogo} alt="Saiko Logo" className="w-full cursor-pointer" />
+
+                        {/* Lottie animation */}
                         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 mb-4 pointer-events-none">
                             <Lottie
                                 options={{
@@ -118,7 +120,6 @@ function Hero() {
                         </div>
                     </div>
 
-                    {/* Lottie animation */}
 
                     {/* SaikoFood image */}
                     <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mt-24 mb-24">
