@@ -5,10 +5,8 @@ import Loader from "./components/Loader.jsx";
 export default function App() {
     return (
         <>
-        <Loader />
+            <Loader />
             <Hero />
-
-
         </>
     )
 }

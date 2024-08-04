@@ -15,6 +15,7 @@ function Hero() {
     const [isMobile, setIsMobile] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
+    const [showOverlay, setShowOverlay] = useState(false);
     const [duration, setDuration] = useState(0);
     const audioRef = useRef(new Audio(SaikoBGM));
 
@@ -95,8 +96,22 @@ function Hero() {
         </svg>
     );
 
+    const handleOverlayClick = () => {
+        setShowOverlay(!showOverlay);
+    };
+
     return (
-        <div>
+        <div className="relative">
+            {showOverlay && (
+                <div
+                    className="fixed w-full h-full bg-black bg-opacity-30 z-10 flex justify-center items-center text-white backdrop-blur-md text-5xl"
+                    onClick={(e) => { e.stopPropagation(); handleOverlayClick(); }}
+                    style={{ fontFamily: 'Attractype Reborn' }}
+                >
+                    Coming Soon
+                </div>
+            )}
+
             {isMobile ? (
                 <div className="flex flex-col items-center" style={{ backgroundImage: `url(${HeroBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                     {/* SaikoLogo */}
@@ -122,40 +137,53 @@ function Hero() {
 
 
                     {/* SaikoFood image */}
-                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mt-24 mb-24">
+                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mt-24 mb-24"
+                        onClick={(e) => { e.stopPropagation(); handleOverlayClick(); }}
+                    >
                         <img src={SaikoFood} alt="Saiko Food" className="w-full cursor-pointer" />
                     </div>
 
                     {/* SaikoBooks image */}
-                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24"
+                        onClick={(e) => { e.stopPropagation(); handleOverlayClick(); }}
+                    >
                         <img src={SaikoBooks} alt="Saiko Books" className="w-full cursor-pointer" />
                     </div>
 
                     {/* SaikoToys image */}
-                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24"
+                        onClick={(e) => { e.stopPropagation(); handleOverlayClick(); }}
+                    >
                         <img src={SaikoToys} alt="Saiko Toys" className="w-full cursor-pointer" />
                     </div>
 
                     {/* SaikoMusic image */}
-                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24"
+                        onClick={(e) => { e.stopPropagation(); handleOverlayClick(); }}
+                    >
                         <img src={SaikoMusic} alt="Saiko Music" className="w-full cursor-pointer" />
                     </div>
 
                     {/* SaikoMovies image */}
-                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24"
+                        onClick={(e) => { e.stopPropagation(); handleOverlayClick(); }}
+                    >
                         <img src={SaikoMovies} alt="Saiko Movies" className="w-full cursor-pointer" />
                     </div>
 
                     {/* SaikoGames image */}
-                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24">
+                    <div className="w-1/2 my-4 hover:scale-110 transform transition-transform duration-300 mb-24"
+                        onClick={(e) => { e.stopPropagation(); handleOverlayClick(); }}
+                    >
                         <img src={SaikoGames} alt="Saiko Games" className="w-full cursor-pointer" />
                     </div>
                 </div>
             ) : (
                 <div className="grid grid-cols-10 grid-rows-10 min-h-screen" style={{ backgroundImage: `url(${HeroBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                     {/* SaikoFood image */}
-                    <div className="col-start-2 row-start-1 col-span-2 row-span-4 flex justify-center items-end">
-                        <img src={SaikoFood} alt="Saiko Food" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle}
+                    <div className="col-start-2 row-start-1 col-span-2 row-span-4 flex justify-center items-end relative">
+                        <img src={SaikoFood} alt="Saiko Food" className="w-3/4 h-3/4 cursor-pointer object-contain" style={imageHoverStyle}
+                            onClick={(e) => { e.stopPropagation(); handleOverlayClick(); }}
                             onMouseEnter={(e) => {
                                 e.target.style.filter = 'brightness(100%)';
                                 e.target.style.transform = 'scale(1.1)';
@@ -169,7 +197,8 @@ function Hero() {
 
                     {/* SaikoBooks image */}
                     <div className="col-start-5 row-start-1 col-span-2 row-span-4 flex justify-center items-center">
-                        <img src={SaikoBooks} alt="Saiko Books" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle}
+                        <img src={SaikoBooks} alt="Saiko Books" className="w-3/4 h-3/4 cursor-pointer object-contain" style={imageHoverStyle}
+                            onClick={(e) => { e.stopPropagation(); handleOverlayClick(); }}
                             onMouseEnter={(e) => {
                                 e.target.style.filter = 'brightness(100%)';
                                 e.target.style.transform = 'scale(1.1)';
@@ -183,7 +212,8 @@ function Hero() {
 
                     {/* SaikoToys image */}
                     <div className="col-start-8 row-start-1 col-span-2 row-span-4 flex justify-center items-end">
-                        <img src={SaikoToys} alt="Saiko Toys" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle}
+                        <img src={SaikoToys} alt="Saiko Toys" className="w-3/4 h-3/4 cursor-pointer object-contain" style={imageHoverStyle}
+                            onClick={(e) => { e.stopPropagation(); handleOverlayClick(); }}
                             onMouseEnter={(e) => {
                                 e.target.style.filter = 'brightness(100%)';
                                 e.target.style.transform = 'scale(1.1)';
@@ -197,7 +227,8 @@ function Hero() {
 
                     {/* SaikoMusic image */}
                     <div className="col-start-2 row-start-7 col-span-2 row-span-4 flex justify-center">
-                        <img src={SaikoMusic} alt="Saiko Music" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle}
+                        <img src={SaikoMusic} alt="Saiko Music" className="w-3/4 h-3/4 cursor-pointer object-contain" style={imageHoverStyle}
+                            onClick={(e) => { e.stopPropagation(); handleOverlayClick(); }}
                             onMouseEnter={(e) => {
                                 e.target.style.filter = 'brightness(100%)';
                                 e.target.style.transform = 'scale(1.1)';
@@ -211,7 +242,8 @@ function Hero() {
 
                     {/* SaikoMovies image */}
                     <div className="col-start-5 row-start-7 col-span-2 row-span-4 flex justify-center items-center">
-                        <img src={SaikoMovies} alt="Saiko Movies" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle}
+                        <img src={SaikoMovies} alt="Saiko Movies" className="w-3/4 h-3/4 cursor-pointer object-contain" style={imageHoverStyle}
+                            onClick={(e) => { e.stopPropagation(); handleOverlayClick(); }}
                             onMouseEnter={(e) => {
                                 e.target.style.filter = 'brightness(100%)';
                                 e.target.style.transform = 'scale(1.1)';
@@ -225,7 +257,8 @@ function Hero() {
 
                     {/* SaikoGames image */}
                     <div className="col-start-8 row-start-7 col-span-2 row-span-4 flex justify-center">
-                        <img src={SaikoGames} alt="Saiko Games" className="w-3/4 h-3/4 cursor-pointer" style={imageHoverStyle}
+                        <img src={SaikoGames} alt="Saiko Games" className="w-3/4 h-3/4 cursor-pointer object-contain" style={imageHoverStyle}
+                            onClick={(e) => { e.stopPropagation(); handleOverlayClick(); }}
                             onMouseEnter={(e) => {
                                 e.target.style.filter = 'brightness(100%)';
                                 e.target.style.transform = 'scale(1.1)';

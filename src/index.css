@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap');
 
-/* Define custom font face */
 @font-face {
-  font-family: 'Attractype Reborn';
-  src: url('../static/fonts/Attractype_Reborn.otf') format('opentype');
+    font-family: 'Attractype Reborn';
+    src: url('../static/fonts/Attractype_Reborn.otf') format('opentype');
 }
 
 @tailwind base;
@@ -14,10 +13,5 @@
 @layer base {
     html {
         @apply scroll-smooth;
-    }
-    body {
-/*font-family: 'Poppins', sans-serif;*/
-
-
     }
 }

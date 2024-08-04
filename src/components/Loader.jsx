@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import loadingwheel from '/loadingwheel.gif'; 
-import loadingsteps from '/loadingsteps.gif'; 
+import loadingwheel from '/loadingwheel.gif';
+import loadingsteps from '/loadingsteps.gif';
 
 
 const text = 'Loading...'; // Text to display below the GIF
@@ -50,10 +50,10 @@ function Loader(props) {
             <img
                 src={loadingsteps}
                 alt="Loading"
-    style={{ width: '133px', height: '100px', filter: 'invert(100%)' }}
+                style={{ width: '133px', height: '100px', filter: 'invert(100%)' }}
             />
         </motion.div>
-        
+
     );
 }
 
