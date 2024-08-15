@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Lottie from 'react-lottie';
 import animationData from '../../lottie/heromobilearrow.json';
 import SaikoBooks from '/Books.png';
@@ -319,6 +319,22 @@ function Hero() {
 
             <div className={`fixed right-4 ${isMobile ? 'top-4' : 'bottom-4'}`}>
                 <div className="gap-x-5 bg-[#000]/[.3] rounded relative flex justify-center items-center py-3 px-4" style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
+                    <a target="blank" className="text-slate-200 text-xs" href="https://x.com/xverseapp/status/1816459497776554363?s=46&t=Cg4JLt1pMNPDfyAuPZPTBA">
+                        <div
+                            className="flex font-bold items-center gap-x-2 pr-3"
+                            style={{ borderRight: "1px solid text-slate-500" }}
+                        >
+                            SWAP ON
+                            <img className="w-7" style={imageHoverStyle} src="/xverse.png" onMouseEnter={(e) => {
+                                e.target.style.filter = 'brightness(100%)';
+                                e.target.style.transform = 'scale(1.1)';
+                            }}
+                                onMouseLeave={(e) => {
+                                    e.target.style.filter = 'brightness(70%)';
+                                    e.target.style.transform = 'scale(1)';
+                                }} />
+                        </div>
+                    </a>
                     <a target="blank" href="https://magiceden.io/runes/SAIKO%E2%80%A2HAMSTER">
                         <img className="w-7" style={imageHoverStyle} src="/magiceden.svg" onMouseEnter={(e) => {
                             e.target.style.filter = 'brightness(100%)';
