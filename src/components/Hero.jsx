@@ -119,7 +119,7 @@ function Hero() {
                         <img src={SaikoLogo} alt="Saiko Logo" className="w-full cursor-pointer" />
 
                         {/* Lottie animation */}
-                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 mb-4 pointer-events-none">
+                        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 mb-4 pointer-events-none">
                             <Lottie
                                 options={{
                                     loop: true,
@@ -317,7 +317,7 @@ function Hero() {
                 </div>
             </div>
 
-            <div className={`fixed right-4 ${isMobile ? 'top-4' : 'bottom-4'}`}>
+            <div className={`fixed right-4 ${isMobile ? 'bottom-4' : 'bottom-4'}`}>
                 <div className="gap-x-5 bg-[#000]/[.3] rounded relative flex justify-center items-center py-3 px-4" style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
                     <a target="blank" className="text-slate-200 text-xs" href="https://x.com/xverseapp/status/1816459497776554363?s=46&t=Cg4JLt1pMNPDfyAuPZPTBA">
                         <div
