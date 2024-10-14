@@ -335,6 +335,36 @@ function Hero() {
                                 }} />
                         </div>
                     </a>
+                    <a target="blank" href="https://glif.app/@NOOTNOOTMFERS/glifs/cm2899qwi0006gcbnoo73pjnb">
+                        <img className="w-7" style={imageHoverStyle} src="/aigenerator.jpg" onMouseEnter={(e) => {
+                            e.target.style.filter = 'brightness(100%)';
+                            e.target.style.transform = 'scale(1.1)';
+                        }}
+                            onMouseLeave={(e) => {
+                                e.target.style.filter = 'brightness(70%)';
+                                e.target.style.transform = 'scale(1)';
+                            }} />
+                    </a>
+                    <a target="blank" href="https://memedepot.com/d/saiko-content">
+                        <img className="w-7" style={imageHoverStyle} src="/memedepot.avif" onMouseEnter={(e) => {
+                            e.target.style.filter = 'brightness(100%)';
+                            e.target.style.transform = 'scale(1.1)';
+                        }}
+                            onMouseLeave={(e) => {
+                                e.target.style.filter = 'brightness(70%)';
+                                e.target.style.transform = 'scale(1)';
+                            }} />
+                    </a>
+                    <a target="blank" href="https://www.coingecko.com/en/coins/saiko-hamster">
+                        <img className="w-7" style={imageHoverStyle} src="/coingecko.png" onMouseEnter={(e) => {
+                            e.target.style.filter = 'brightness(100%)';
+                            e.target.style.transform = 'scale(1.1)';
+                        }}
+                            onMouseLeave={(e) => {
+                                e.target.style.filter = 'brightness(70%)';
+                                e.target.style.transform = 'scale(1)';
+                            }} />
+                    </a>
                     <a target="blank" href="https://magiceden.io/runes/SAIKO%E2%80%A2HAMSTER">
                         <img className="w-7" style={imageHoverStyle} src="/magiceden.svg" onMouseEnter={(e) => {
                             e.target.style.filter = 'brightness(100%)';
