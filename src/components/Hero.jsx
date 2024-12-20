@@ -335,6 +335,18 @@ function Hero() {
                                 }} />
                         </div>
                     </a>
+
+                    <a target="blank" className="text-slate-200 text-xs" href="https://satgo.io/rune/SAIKOHAMSTER">
+                        <img className="w-7" style={imageHoverStyle} src="https://satgo.io/logos/satgo-logo.svg" onMouseEnter={(e) => {
+                            e.target.style.filter = 'brightness(100%)';
+                            e.target.style.transform = 'scale(1.1)';
+                        }}
+                            onMouseLeave={(e) => {
+                                e.target.style.filter = 'brightness(70%)';
+                                e.target.style.transform = 'scale(1)';
+                            }} />
+                    </a>
+
                     <a target="blank" href="https://glif.app/@NOOTNOOTMFERS/glifs/cm2899qwi0006gcbnoo73pjnb">
                         <img className="w-7" style={imageHoverStyle} src="/aigenerator.jpg" onMouseEnter={(e) => {
                             e.target.style.filter = 'brightness(100%)';
