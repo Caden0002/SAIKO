@@ -321,7 +321,7 @@ function Hero() {
                 <div className="gap-x-5 bg-[#000]/[.3] rounded relative flex justify-center items-center py-3 px-4" style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset" }}>
                     <a target="blank" className="text-slate-200 text-xs" href="https://x.com/xverseapp/status/1816459497776554363?s=46&t=Cg4JLt1pMNPDfyAuPZPTBA">
                         <div
-                            className="flex font-bold items-center gap-x-2 pr-3"
+                            className="flex font-bold items-center gap-x-2"
                             style={{ borderRight: "1px solid text-slate-500" }}
                         >
                             SWAP ON
@@ -336,7 +336,7 @@ function Hero() {
                         </div>
                     </a>
 
-                    <a target="blank" className="text-slate-200 text-xs" href="https://satgo.io/rune/SAIKOHAMSTER">
+                    <a target="blank" className="text-slate-200 text-xs pr-3" href="https://satgo.io/rune/SAIKOHAMSTER">
                         <img className="w-7" style={imageHoverStyle} src="https://satgo.io/_next/image?url=%2Fios%2F1024.png&w=128&q=75" onMouseEnter={(e) => {
                             e.target.style.filter = 'brightness(100%)';
                             e.target.style.transform = 'scale(1.1)';
