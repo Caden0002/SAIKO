@@ -337,7 +337,7 @@ function Hero() {
                     </a>
 
                     <a target="blank" className="text-slate-200 text-xs" href="https://satgo.io/rune/SAIKOHAMSTER">
-                        <img className="w-7" style={imageHoverStyle} src="https://satgo.io/logos/satgo-logo.svg" onMouseEnter={(e) => {
+                        <img className="w-7" style={imageHoverStyle} src="https://satgo.io/_next/image?url=%2Fios%2F1024.png&w=128&q=75" onMouseEnter={(e) => {
                             e.target.style.filter = 'brightness(100%)';
                             e.target.style.transform = 'scale(1.1)';
                         }}
